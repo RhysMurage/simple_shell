@@ -3,13 +3,10 @@
 /**
   * main- function that displays prompt and reads input from stdin
   * @argc: integer variable for number of arguments passed
-  * argv: pointer to strings
+  * @argv: pointer to strings
   *
   * Return: Always (0);
   */
-
-/** command line prompt **/
-char prompt[] = "$ ";
 
 int main(int argc, char **argv)
 {
@@ -19,15 +16,15 @@ int main(int argc, char **argv)
 	int status = 1;
 
 	buffer = (char *)malloc(bufsize * sizeof(char));
-	if( buffer == NULL)
+	if (buffer == NULL)
 	{
 		perror("Unable to allocate buffer");
-	        exit(1);
+		exit(1);
 	}
 
 	while (status)
 	{
-		printf("%s", prompt);
+		write(STDOUT_FILENO, "#cisfun$ ", 9);
 		characters = getline(&buffer, &bufsize, stdin);
 
 		if (characters == 0 && ferror(stdin))
@@ -36,11 +33,10 @@ int main(int argc, char **argv)
 		/* End of file */
 		if (feof(stdin))
 		{
-			printf("\n");
+			write(STDOUT_FILENO, "\n", 1);
 			exit(0);
 		}
 	}
 
 	return (0);
 }
-	
