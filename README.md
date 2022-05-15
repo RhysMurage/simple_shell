@@ -1,1 +1,1 @@
-# C - Simpliiiiiiiie
+# C - Simple shell.
