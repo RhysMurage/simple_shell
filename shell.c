@@ -16,7 +16,7 @@ int main()
 
 	while (status)
 	{
-		write(STDOUT_FILENO, "#cisfun$ ", 9);
+		write(STDOUT_FILENO, "($) ", 4);
 
 		/* End of file */
 		if (feof(stdin))
