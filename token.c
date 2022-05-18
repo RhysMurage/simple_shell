@@ -1,24 +1,33 @@
 #include "main.h"
-#define BUFSIZE 1024
 
-char **tokenize(char *line)
+/**
+ * tokenr - Analyze arguments in tokens.
+ *
+ * @BUFF: bring arguments.
+ *
+ * Return: Arg_str.
+ */
+
+char **tokenr(char *BUFF)
 {
-	int bufsize = BUFSIZE;
-	char **tokens;
-	char *token;
-	char *delimiters = " :'\n''\t'";
-	int len = 0;
+	char *token = NULL;
+	char **Arg_str = NULL;
+	int i = 0, size = 0;
 
-	tokens = malloc(sizeof(char *) * bufsize);
-	token = strtok(line, delimiters);
+	while (BUFF[size] != '\0')
+		size++;
 
-	while(token != NULL)
+	Arg_str = malloc(sizeof(char *) * size);
+
+
+	token = strtok(BUFF, DELIM);
+	Arg_str[i] = token;
+
+	for (i = 1; token != NULL; i++)
 	{
-		tokens[len] = strdup(token);
-		token = strtok(NULL, delimiters);
-		len++;
+		token = strtok(NULL, DELIM);
+		Arg_str[i] = token;
 	}
-	tokens[len] = token;
 
-	return(tokens);
+	return (Arg_str);
 }

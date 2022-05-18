@@ -1,32 +1,28 @@
 #include "main.h"
 
 /**
-  * main- function that displays prompt and reads input from stdin
-  * @: integer variable for number of arguments passed
-  * @argv: pointer to command arguments
-  *
-  * Return: Always (0);
-  */
+ * main - start shell.
+ *
+ * Return: (0).
+ */
 
-int main()
+int main(void)
 {
-	int status = 1;
-	char *line;
-	char **tokens;
+	char *row = NULL;
+	char **tokens = NULL;
+	int ct_output = 0;
 
-	while (status)
+	while (1)
 	{
-		write(STDOUT_FILENO, "($) ", 4);
+		if (isatty(STDIN))
+			write(STDOUT, "#holbies$ ", 10);
 
-		/* End of file */
-		if (feof(stdin))
-		{
-			write(STDOUT_FILENO, "\n", 1);
-			exit(0);
-		}
-		line = readline();
-		tokens = tokenize(line);
-		execute(tokens);
+		row = rd_row();
+		tokens = tokenizer(row);
+		ct_output = Run(tokens, ct_output, row);
+
+		free(row);
+		free(tokens);
 	}
 
 	return (0);
