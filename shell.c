@@ -3,32 +3,21 @@
 /**
   * main- function that displays prompt and reads input from stdin
   * @argc: integer variable for number of arguments passed
-  * @argv: pointer to strings
+  * @argv: pointer to command arguments
   *
   * Return: Always (0);
   */
 
 int main(int argc, char **argv)
 {
-	char *buffer;
-	size_t bufsize = 32;
-	size_t characters;
 	int status = 1;
-
-	buffer = (char *)malloc(bufsize * sizeof(char));
-	if (buffer == NULL)
-	{
-		perror("Unable to allocate buffer");
-		exit(1);
-	}
+	char *line;
+	char **tokens;
+	char *delimiters = " :'\n''\t'";
 
 	while (status)
 	{
 		write(STDOUT_FILENO, "#cisfun$ ", 9);
-		characters = getline(&buffer, &bufsize, stdin);
-
-		if (characters == 0 && ferror(stdin))
-			perror("Error");
 
 		/* End of file */
 		if (feof(stdin))
@@ -36,6 +25,9 @@ int main(int argc, char **argv)
 			write(STDOUT_FILENO, "\n", 1);
 			exit(0);
 		}
+		line = readline();
+		tokens = tokenize(line);
+		execute(tokens);
 	}
 
 	return (0);
