@@ -11,16 +11,11 @@ char *readline(void)
 	char *buffer;
 	size_t bufsize = 32;
 	size_t characters;
-	int len = 0;
 
+	buffer = (char *)malloc(bufsize * sizeof(char));
 	characters = getline(&buffer, &bufsize, stdin);
-	if (len == -1)
-	{
-		free(buffer);
-		return (NULL);
-	}
-	if (buffer[len - 1] == '\n')
-		buffer[len - 1] = '\0';
+	if (buffer[characters - 1] == '\n')
+		buffer[characters - 1] = '\0';
 
 	return (buffer);
 }
