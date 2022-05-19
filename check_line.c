@@ -24,3 +24,5 @@ char *rd_row(void)
 
 		exit(EXIT_SUCCESS);
 	}
+	return (BUFF);
+}
