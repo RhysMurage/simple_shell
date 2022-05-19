@@ -8,7 +8,7 @@
  * Return: Arg_str.
  */
 
-char **tokenr(char *BUFF)
+char **tokenizer(char *BUFF)
 {
 	char *token = NULL;
 	char **Arg_str = NULL;
