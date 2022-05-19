@@ -15,7 +15,7 @@ int main(void)
 	while (1)
 	{
 		if (isatty(STDIN))
-			write(STDOUT, "#holbies$ ", 10);
+			write(STDOUT, "($) ", 4);
 
 		row = rd_row();
 		tokens = tokenizer(row);
